@@ -1,0 +1,9 @@
+<!--pages/messages/messages.wxml-->
+<text>Message Board</text>
+<view class="form">
+  <form bindsubmit="bindFormSubmit">
+    <textarea class="Name" name="name" placeholder='name'/>
+    <textarea class="Message" name="message" placeholder='message'/>
+    <button type="primary" form-type="submit">Submit</button>
+  </form>
+</view>
