@@ -73,15 +73,19 @@ Page({
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    var acl = new AV.ACL();
-    acl.setPublicReadAccess(true);
-    acl.setPublicWriteAccess(true);
-    setTimeout(function () {
-      new Message({
-        name: name,
-        quote: message,
-        time: formattedTime
-      }).setACL(acl).save().catch(console.error);
+
+    const message = new Message('message', {
+      name: name,
+      //etc
+    })
+    .save()
+    .then( function(response) {
+      console.log(response) // This will run if it's successful.
+    })
+    .catch( function(err) {
+      console.log(err) // This will run if there is an error saving the object
+    })
+
       console.log('form发生了submit事件，携带数据为：', e.detail.value, timestamp)
       wx.reLaunch({
         url: '/pages/index/index'
